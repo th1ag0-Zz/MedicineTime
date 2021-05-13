@@ -6,11 +6,15 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+
 import Button from '../../components/Button';
 import colors from '../../utils/colors';
 import styles from './styles';
 
 const UserIdentification: React.FC = () => {
+
+  const { navigate } = useNavigation()
 
   const [name, setName] = useState<string>()
   const [isFocused, setIsFocused] = useState(false)
@@ -28,6 +32,10 @@ const UserIdentification: React.FC = () => {
   function handleInputChange(value: string) {
     setName(value)
     setIsFilled(!!value)
+  }
+
+  function handleConfirmation() {
+    navigate('Confirmation')
   }
 
   return (
@@ -51,7 +59,7 @@ const UserIdentification: React.FC = () => {
           ]}
         />
 
-        <Button title="Confirmar"/>
+        <Button title="Confirmar" onPress={handleConfirmation} />
       </View>
     </TouchableWithoutFeedback>
   );

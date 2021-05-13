@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from '../pages/Welcome';
 import UserIdentification from '../pages/UserIdentification';
+import Confimation from '../pages/Confimation';
 
 const stackRoutes = createStackNavigator()
 
@@ -20,6 +21,11 @@ const AppRoutes: React.FC = () => {
       <stackRoutes.Screen
         name="UserIdentification"
         component={UserIdentification}
+      />
+
+      <stackRoutes.Screen
+        name="Confirmation"
+        component={Confimation}
       />
 
     </stackRoutes.Navigator>
