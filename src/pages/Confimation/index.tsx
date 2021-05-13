@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Text, View } from 'react-native';
 
@@ -6,6 +7,13 @@ import colors from '../../utils/colors';
 import styles from './styles';
 
 const Confimation: React.FC = () => {
+
+  const { navigate } = useNavigation()
+
+  function handleStart() {
+    navigate('MedicineForm')
+  }
+
   return (
     <View style={styles.container}>
         <Text style={styles.emoji}>
@@ -20,7 +28,7 @@ const Confimation: React.FC = () => {
           Agora vamos começar a agendar{'\n'}seus horários
         </Text>
 
-        <Button title="Começar" />
+        <Button title="Começar" onPress={handleStart} />
       </View>
   );
 }

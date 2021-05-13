@@ -4,9 +4,11 @@ import {
   View,
   TextInput,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Button from '../../components/Button';
 import colors from '../../utils/colors';
@@ -34,8 +36,17 @@ const UserIdentification: React.FC = () => {
     setIsFilled(!!value)
   }
 
-  function handleConfirmation() {
-    navigate('Confirmation')
+   async function handleConfirmation() {
+
+    if (!name)
+      return Alert.alert('Me diz como chamar você, por favor 🥺')
+
+    try {
+      await AsyncStorage.setItem('@medicinetime:user', name)
+      navigate('Confirmation')
+    } catch (error) {
+      Alert.alert('Não foi possível salvar o seu nome 🥺')
+    }
   }
 
   return (
